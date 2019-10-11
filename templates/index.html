@@ -1,0 +1,21 @@
+{% extends "books/base_generic.html" %}
+{% block content %}
+
+<h1>Runaway books</h1>
+<p>Aici s-au adunat astea de așteaptă doar un semn să o întindă.  
+<br>Cică e aglomerație mare. Sufocant, de-a dreptul...
+<br>Cică au ele un dor, așa, să-și desfacă aripile, să bucure alți oameni, alte minți.
+<br>Așa că aruncați o privire, poate mă scăpați de ele. Una câte una, sau mai multe deodată. Cum vă place.</p>
+
+<h2>Catalog dinamic</h2>
+<p>Astea-s cifrele:</p>
+<ul>
+<li><strong>Cărți: </strong>{{num_books}}</li>
+<li><strong>Autori: </strong>{{num_authors}}</li>
+<li><strong>Cărți disponibile: </strong>{{num_available_books}}</li>
+</ul>
+
+<p>Ai vizitat această pagină {% if num_visits == 1 %} odată {% else %} de {{num_visits}} ori. </p>
+{% endif %}
+{% endblock %}
+

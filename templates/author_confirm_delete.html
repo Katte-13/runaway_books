@@ -1,0 +1,11 @@
+
+{% extends "books/base_generic.html" %}
+
+{% block content %}
+<h1> Șterge autorul </h1>
+<p>Ești sigur că vrei să ștergi autorul: {{ author }}? </p>
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Da, șterge.">
+  </form>
+{% endblock %}

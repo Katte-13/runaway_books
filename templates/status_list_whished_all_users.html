@@ -1,0 +1,24 @@
+
+{% extends "books/base_generic.html" %}
+
+{% block content %}
+
+<h1>Toate cărțile dorite </h1>
+
+  {% if status_list %}
+  
+  <ul>
+    {% for status in status_list %}
+    <li class="{% if status.is_overdue %}text-danger{% endif %}">
+      <a href="{% url 'books:book_detail' status.book.pk %}">{{ status.book}}</a> ({{ status.due_back}}) 
+    {% if user.is_staff %} - {{ status.wisher }}{% endif %}
+    {% if perms.book.can_mark_available %} - <a href="{% url 'books:renew_book_librarian' status.pk %}">Prelungire</a>{% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+  
+{% else %}
+
+<p>N-am găsit nici o carte dorită!</p>
+{% endif %}
+{% endblock %}

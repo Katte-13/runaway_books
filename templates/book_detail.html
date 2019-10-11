@@ -1,0 +1,34 @@
+{% extends "books/base_generic.html" %}
+
+{% block content %}
+    <h1>Titlu: {{book.title}}</h1>
+    <ul>
+      <p><strong>Autor:</strong>
+      <a href="{% url 'books:author_detail' book.author.pk %}"> {{book.author}} </a></p>
+      <p><strong>Sumar:</strong> {{book.summary}}</p>
+      <p><strong>Categorie:</strong> {% for category in book.category %}
+      {{book.get_category_display}} {% endfor %}</p>
+      <p><strong>Gen:</strong> {% for genre in book.genre.all %} {{genre}}
+      {% if not forloop.last %}, {% endif %} {% endfor %}</p>
+      <p><strong>Ediție: </strong> {{ book.pub_house }}</p>
+      <p><strong>Posesor: </strong> {{ book.owner }}</p>
+      <p><strong>Status: </strong> 
+      {% for status in book.status_set.all %}
+      {% if status.status == 'av' %} 
+      <a href="{% url 'books:status' status.pk %}">{{status.get_status_display}}</a>
+        {% if user.is_authenticated %}
+            <form action="" method="post"> 
+            {% csrf_token %}
+            <p>O vrei? Marchez-o ca dorită! - {{form}}</p> 
+            <input type="submit" value="OK"> 
+            </form>
+            {% else %}
+            <p>Ai uitat să te autentifici! </p>
+            <p>Mergi, te rog, la login și apoi revino. </p>
+            {% endif %}
+      {% else %} {{status.get_status_display}} -- (<strong>{{status.wisher}}</strong>; Termen: {{status.due_back}})</p>
+        {% endif %}
+        {% endfor %} 
+    </ul>
+    
+{% endblock %}

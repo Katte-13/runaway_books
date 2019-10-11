@@ -1,0 +1,17 @@
+
+{% extends "books/base_generic.html" %}
+
+{% block content %}
+
+<h2>Titlu: {{status.book}}</h2>
+{% if user.is_authenticated %}
+<form action="" method="post"> 
+    {% csrf_token %}
+    <p>Vrei cartea asta? Marcheaz-o ca <strong>dorită</strong> - {{form}}</p> 
+    <input type="submit" value="OK"> 
+</form>
+{% else %}
+<p>Ai uitat să te autentifici! </p>
+<p>Mergi, te rog, la login și apoi revino. </p>
+{% endif %}
+{% endblock %}

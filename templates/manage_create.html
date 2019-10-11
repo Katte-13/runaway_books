@@ -1,0 +1,14 @@
+{% extends "books/base_generic.html" %}
+
+{% block content %}
+
+ <form action="" method="POST">
+   {% csrf_token %}
+     <table>
+       {{form_book.as_table}}
+       {{form_author.as_table}}
+     </table>
+     <input type="submit" value="Crează">
+  </form>
+
+{% endblock %}

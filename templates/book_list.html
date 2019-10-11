@@ -1,0 +1,16 @@
+{% extends "books/base_generic.html" %}
+
+{% block content %}
+    <h1>Listă cărți</h1>
+    {% if book_list %}
+    <ul>
+      {% for book in book_list %}
+         <li>
+         <a href="{% url 'books:book_detail' book.pk %}">{{book.title}}</a> - {{book.author}}
+         </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>N-avem nici o carte de acest fel</p>
+    {% endif %}
+{% endblock %}

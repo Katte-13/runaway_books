@@ -1,0 +1,20 @@
+
+{% extends "books/base_generic.html" %}
+
+{% block content %}
+
+  <h1> Cărți dorite </h1>
+
+  {% if status_list %}
+  <ul>
+    {% for status in status_list %}
+    <li class="{% if status.is_overdue %}text_danger{% endif %}">
+      <a href="{% url 'books:book_detail' status.book.pk %}">{{ status.book.title }}</a> ({{ status.due_back }})
+    </li>
+    {% endfor %}
+  </ul>
+
+  {% else %}
+    <p> N-am găsit nici o carte dorită!</p>
+  {% endif %}
+{% endblock %}
